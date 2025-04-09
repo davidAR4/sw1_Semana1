@@ -1,0 +1,49 @@
+﻿@model IEnumerable<sw1_Semana1.Models.Regions>
+
+@{
+    ViewBag.Title = "Accion_listado";
+}
+
+<h2>Accion_listado</h2>
+
+<p>
+    @Html.ActionLink("Create New", "accion_crear")
+</p>
+
+<!-- Formulario para buscar por ID -->
+@using (Html.BeginForm("accion_buscarId", "Region", FormMethod.Post))
+{
+    <label for="regionId">Buscar por ID:</label>
+    <input type="text" name="id" id="regionId" class="form-control" />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.region_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.region_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.region_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.region_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "accion_editar", new { id = item.region_id }) |
+                @Html.ActionLink("Details", "", new { /*id = item.region_id */}) |
+                @Html.ActionLink("Delete", "accion_eliminar", new { id = item.region_id })
+            </td>
+        </tr>
+    }
+
+</table>
