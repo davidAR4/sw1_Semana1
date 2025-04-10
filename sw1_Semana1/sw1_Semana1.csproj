@@ -112,16 +112,25 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContriesController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="dao\DaoImpl\CountriesDaoImpl.cs" />
-    <Compile Include="dao\DaoImpl\ICountriesDao.cs" />
+    <Compile Include="dao\DaoImpl\DepartamentImpl.cs" />
+    <Compile Include="dao\DaoImpl\JobsDaoImpl.cs" />
+    <Compile Include="dao\ICountriesDao.cs" />
     <Compile Include="dao\DaoImpl\RegionDaoImpl.cs" />
+    <Compile Include="dao\IDepartamentDao.cs" />
+    <Compile Include="dao\IJobsDao.cs" />
     <Compile Include="dao\IRegionDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Countries.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employeds.cs" />
+    <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Regions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -207,9 +216,11 @@
     <Content Include="Views\Region\accion_editar.cshtml" />
     <Content Include="Views\Contries\ACCION_CREAR.cshtml" />
     <Content Include="Views\Contries\listarContries.cshtml" />
+    <Content Include="Views\Jobs\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
