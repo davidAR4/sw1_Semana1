@@ -44,7 +44,7 @@ namespace sw1_Semana1.dao.DaoImpl
                                     while (reader.Read())
                                     {
                                             job = new Jobs();
-                                    job.job_id = reader.GetInt32(ordinalJobId);  
+                                            job.job_id = reader.GetInt32(ordinalJobId);  
                                             job.job_title = reader.GetString(ordinalJobTitle);
                                             job.max_salary = reader.GetDecimal(ordinalMinSalary);
                                             job.min_salary = reader.GetDecimal(ordinalMaxSalary);

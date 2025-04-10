@@ -20,7 +20,7 @@ namespace sw1_Semana1.dao.DaoImpl
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnxhr0"].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("usp_crud_departament1"))
+                    using (SqlCommand cmd = new SqlCommand("usp_crud_departament1", conn))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.Clear();
@@ -34,7 +34,7 @@ namespace sw1_Semana1.dao.DaoImpl
                             if (reader.HasRows)
                             {
                                 int ordinalDepartmentId = reader.GetOrdinal("department_id");
-                                int ordinalDepartmentName = reader.GetOrdinal("department_bame");
+                                int ordinalDepartmentName = reader.GetOrdinal("department_name");
                                 int ordinalLocationId = reader.GetOrdinal("location_id");
                                 Department depa;
                                 while (reader.Read())

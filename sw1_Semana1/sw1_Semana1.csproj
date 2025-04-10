@@ -217,10 +217,10 @@
     <Content Include="Views\Contries\ACCION_CREAR.cshtml" />
     <Content Include="Views\Contries\listarContries.cshtml" />
     <Content Include="Views\Jobs\Listar.cshtml" />
+    <Content Include="Views\Department\ACCION_LISTADO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

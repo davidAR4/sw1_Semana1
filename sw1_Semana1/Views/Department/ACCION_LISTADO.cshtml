@@ -1,0 +1,45 @@
+﻿@model IEnumerable<sw1_Semana1.Models.Department>
+
+@{
+    ViewBag.Title = "ACCION_LISTADO";
+}
+
+<h2>ACCION_LISTADO</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.department_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.department_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.department_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.department_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location_id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
