@@ -222,6 +222,7 @@
     <Content Include="Views\Jobs\Listar.cshtml" />
     <Content Include="Views\Department\ACCION_LISTADO.cshtml" />
     <Content Include="Views\Employed\Listar.cshtml" />
+    <Content Include="Views\Employed\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
