@@ -13,7 +13,36 @@ namespace sw1_Semana1.dao.DaoImpl
         // Método de escritura, actualmente no implementado
         public int operacionesEscritura(string indicador, Employeds objEmployeds)
         {
-            throw new NotImplementedException();
+            int procesar = -1; //sirve para ver si se registro un nuevo valor o no, si no se registra se queda en la misma pagina de registrar, por una restriccion de la bd o algo parecido
+            try {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnxhr0"].ConnectionString))
+                   
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("usp_employeds_crud2", conn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@indicador", indicador);
+                        cmd.Parameters.AddWithValue("@employe_id", objEmployeds.employe_id);
+                        cmd.Parameters.AddWithValue("@first_name", objEmployeds.first_name);
+                        cmd.Parameters.AddWithValue("@last_name", objEmployeds.last_name);
+                        cmd.Parameters.AddWithValue("@email", objEmployeds.email);
+                        cmd.Parameters.AddWithValue("@phone_number", objEmployeds.phone_number);
+                        cmd.Parameters.AddWithValue("@hire_date", objEmployeds.hire_date);
+                        cmd.Parameters.AddWithValue("@job_id", objEmployeds.job_id);
+                        cmd.Parameters.AddWithValue("@salary", objEmployeds.salary);
+                        cmd.Parameters.AddWithValue("@manager_id", objEmployeds.manager_id);
+                        cmd.Parameters.AddWithValue("@departament_id", objEmployeds.department_id);
+                        procesar = cmd.ExecuteNonQuery(); // Ejecuta el comando y si funciona redirige a la vista que le corresponde
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // Si ocurre algún error, lo imprimimos en la consola de depuración
+                Debug.WriteLine("OperacionesEscritura - Error : " + e.Message);
+            } return procesar; // Devolvemos el resultado de la operación
         }
 
         // Método para realizar operaciones de lectura (consulta) de empleados
