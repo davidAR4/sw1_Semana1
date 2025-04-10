@@ -113,15 +113,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContriesController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EmployedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="dao\DaoImpl\CountriesDaoImpl.cs" />
     <Compile Include="dao\DaoImpl\DepartamentImpl.cs" />
+    <Compile Include="dao\DaoImpl\EmployedDaoImpl.cs" />
     <Compile Include="dao\DaoImpl\JobsDaoImpl.cs" />
     <Compile Include="dao\ICountriesDao.cs" />
     <Compile Include="dao\DaoImpl\RegionDaoImpl.cs" />
     <Compile Include="dao\IDepartamentDao.cs" />
+    <Compile Include="dao\IEmployedsDao.cs" />
     <Compile Include="dao\IJobsDao.cs" />
     <Compile Include="dao\IRegionDao.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,6 +221,7 @@
     <Content Include="Views\Contries\listarContries.cshtml" />
     <Content Include="Views\Jobs\Listar.cshtml" />
     <Content Include="Views\Department\ACCION_LISTADO.cshtml" />
+    <Content Include="Views\Employed\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
