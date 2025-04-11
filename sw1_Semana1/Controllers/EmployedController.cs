@@ -25,6 +25,7 @@ namespace sw1_Semana1.Controllers
         {
             ViewBag.comboDepartament = new SelectList(listaDepartamentos(), "department_id", "department_name");
             ViewBag.combojobs = new SelectList(listaJobs(), "job_id", "job_title");
+            ViewBag.comboEmployed = new SelectList(listaEmployed(), "employe_id", "first_name");
             return View();
         }
         [HttpPost]
@@ -33,6 +34,7 @@ namespace sw1_Semana1.Controllers
             int procesar = dao.operacionesEscritura("Insertar", objEmployeds);
             ViewBag.comboDepartament = new SelectList(listaDepartamentos(), "department_id", "department_name");
             ViewBag.combojobs = new SelectList(listaJobs(), "job_id", "job_title");
+            ViewBag.comboEmployed = new SelectList(listaEmployed(), "employe_id", "first_name");
             if (procesar >= 0)
             {
                 return RedirectToAction("Listar");
@@ -53,6 +55,12 @@ namespace sw1_Semana1.Controllers
         {
             IJobsDao dao = new JobsDaoImpl();
             List<Jobs> lista = dao.OperacionesLectura("listar", new Jobs());
+            return lista;
+        }
+
+        public List<Employeds> listaEmployed() {
+            IEmployedsDao dao = new EmployedDaoImpl();
+            List<Employeds> lista = dao.OperacionesLectura("listar", new Employeds());
             return lista;
         }
 
@@ -91,9 +99,10 @@ namespace sw1_Semana1.Controllers
 
         [HttpGet]
         public ActionResult Accion_editar(int id) { 
-        Employeds employed = dao.OperacionesLectura("buscariD", new Employeds { employe_id = id }).FirstOrDefault();
-            ViewBag.comboDepartament = new SelectList(listaDepartamentos(), "department_id", "department_name");
+        Employeds employed = dao.OperacionesLectura("buscariD", new Employeds { employe_id = id }).FirstOrDefault(); // el first lo que hace es reccorer y te devuelva el primer elemento de la lista que coincida con lo que buscaste
+            ViewBag.comboDepartament = new SelectList(listaDepartamentos(), "department_id", "department_name"); // para seleccionar las columnas de la entidad  departamento que se convertira en un combox en la vista
             ViewBag.combojobs = new SelectList(listaJobs(), "job_id", "job_title");
+            ViewBag.comboEmployed = new SelectList(listaEmployed(), "employe_id", "first_name");
             return View(employed);
         }
 
@@ -105,11 +114,14 @@ namespace sw1_Semana1.Controllers
 
             if (procesar <= 0)
             {
-                ViewBag.Message = "No se pudo actualizar la región";
+                ViewBag.comboDepartament = new SelectList(listaDepartamentos(), "department_id", "department_name");
+                ViewBag.combojobs = new SelectList(listaJobs(), "job_id", "job_title");
+                ViewBag.comboEmployed = new SelectList(listaEmployed(), "employe_id", "first_name");
+                ViewBag.mensajeError = "No se pudo editar";
                 return View(employeds);
             }
 
-            ViewBag.Message = "Región actualizada correctamente";
+        
             return RedirectToAction("Listar");
         }
     } 

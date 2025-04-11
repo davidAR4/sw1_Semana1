@@ -67,7 +67,7 @@ namespace sw1_Semana1.dao.DaoImpl
 
                     
                         cmd.Parameters.AddWithValue("@indicador", indicador);
-                        cmd.Parameters.AddWithValue("@employe_id", objEmployeds.employe_id ?? (object)DBNull.Value); // Asignación de nulos de manera segura
+                        cmd.Parameters.AddWithValue("@employe_id", objEmployeds.employe_id ?? (object)DBNull.Value); // para aceptar valores nulos 
                         cmd.Parameters.AddWithValue("@first_name", objEmployeds.first_name ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@last_name", objEmployeds.last_name ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@email", objEmployeds.email ?? (object)DBNull.Value);
@@ -102,7 +102,7 @@ namespace sw1_Semana1.dao.DaoImpl
                                     Employeds emp = new Employeds();
 
                                    
-                                    emp.employe_id = reader.IsDBNull(ordinalEmployeId) ? (int?)null : reader.GetInt32(ordinalEmployeId);
+                                    emp.employe_id = reader.IsDBNull(ordinalEmployeId) ? (int?)null : reader.GetInt32(ordinalEmployeId);//para aceptar valores nulos
                                     emp.first_name = reader.IsDBNull(ordinalFirstName) ? null : reader.GetString(ordinalFirstName);
                                     emp.last_name = reader.IsDBNull(ordinalLastName) ? null : reader.GetString(ordinalLastName);
                                     emp.email = reader.IsDBNull(ordinalEmail) ? null : reader.GetString(ordinalEmail);
