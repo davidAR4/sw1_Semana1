@@ -223,6 +223,8 @@
     <Content Include="Views\Department\ACCION_LISTADO.cshtml" />
     <Content Include="Views\Employed\Listar.cshtml" />
     <Content Include="Views\Employed\Crear.cshtml" />
+    <Content Include="Views\Employed\Accion_eliminar.cshtml" />
+    <Content Include="Views\Employed\Accion_editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

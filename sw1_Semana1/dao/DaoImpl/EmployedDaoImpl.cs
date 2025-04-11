@@ -23,7 +23,7 @@ namespace sw1_Semana1.dao.DaoImpl
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.Clear();
-                        // Asignación de parámetros a los valores recibidos en el objeto `objEmployeds`
+                  
                         cmd.Parameters.AddWithValue("@indicador", indicador);
                         cmd.Parameters.AddWithValue("@employe_id", objEmployeds.employe_id ?? (object)DBNull.Value); // Asignación de nulos de manera segura
                         cmd.Parameters.AddWithValue("@first_name", objEmployeds.first_name ?? (object)DBNull.Value);
@@ -49,24 +49,23 @@ namespace sw1_Semana1.dao.DaoImpl
         // Método para realizar operaciones de lectura (consulta) de empleados
         public List<Employeds> OperacionesLectura(string indicador, Employeds objEmployeds)
         {
-            // Lista para almacenar los empleados obtenidos de la base de datos
+          
             List<Employeds> lista = new List<Employeds>();
 
             try
             {
-                // Establece la conexión con la base de datos usando la cadena de conexión
+   
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnxhr0"].ConnectionString))
                 {
                     conn.Open();
 
-                    // Comando SQL para ejecutar el procedimiento almacenado 'usp_employeds_crud2'
                     using (SqlCommand cmd = new SqlCommand("usp_employeds_crud3", conn))
                     {
-                        // Definimos el tipo de comando como procedimiento almacenado
+                    
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.Clear();
 
-                        // Asignación de parámetros a los valores recibidos en el objeto `objEmployeds`
+                    
                         cmd.Parameters.AddWithValue("@indicador", indicador);
                         cmd.Parameters.AddWithValue("@employe_id", objEmployeds.employe_id ?? (object)DBNull.Value); // Asignación de nulos de manera segura
                         cmd.Parameters.AddWithValue("@first_name", objEmployeds.first_name ?? (object)DBNull.Value);
@@ -79,13 +78,13 @@ namespace sw1_Semana1.dao.DaoImpl
                         cmd.Parameters.AddWithValue("@manager_id", objEmployeds.manager_id ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@departament_id", objEmployeds.department_id ?? (object)DBNull.Value);
 
-                        // Ejecuta el lector de datos para obtener los resultados
+                     
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             // Verifica si hay filas en los resultados
                             if (reader.HasRows)
                             {
-                                // Obtención de los índices de las columnas para mapear los datos
+                              
                                 int ordinalEmployeId = reader.GetOrdinal("employee_id");
                                 int ordinalFirstName = reader.GetOrdinal("first_name");
                                 int ordinalLastName = reader.GetOrdinal("last_name");
@@ -97,13 +96,12 @@ namespace sw1_Semana1.dao.DaoImpl
                                 int ordinalManagerId = reader.GetOrdinal("manager_id");
                                 int ordinalDepartmentId = reader.GetOrdinal("department_id");
 
-                                // Mientras haya filas que leer, se crea un objeto Employeds por cada fila
                                 while (reader.Read())
                                 {
-                                    // Creamos un nuevo objeto Employeds para cada fila
+                               
                                     Employeds emp = new Employeds();
 
-                                    // Asignamos los valores a las propiedades del objeto, manejando valores nulos con IsDBNull
+                                   
                                     emp.employe_id = reader.IsDBNull(ordinalEmployeId) ? (int?)null : reader.GetInt32(ordinalEmployeId);
                                     emp.first_name = reader.IsDBNull(ordinalFirstName) ? null : reader.GetString(ordinalFirstName);
                                     emp.last_name = reader.IsDBNull(ordinalLastName) ? null : reader.GetString(ordinalLastName);
@@ -115,7 +113,7 @@ namespace sw1_Semana1.dao.DaoImpl
                                     emp.manager_id = reader.IsDBNull(ordinalManagerId) ? (int?)null : reader.GetInt32(ordinalManagerId);
                                     emp.department_id = reader.IsDBNull(ordinalDepartmentId) ? (int?)null : reader.GetInt32(ordinalDepartmentId);
 
-                                    // Agregamos el objeto empleado a la lista
+                                
                                     lista.Add(emp);
                                 }
                             }
@@ -125,11 +123,9 @@ namespace sw1_Semana1.dao.DaoImpl
             }
             catch (Exception e)
             {
-                // Si ocurre algún error, lo imprimimos en la consola de depuración
                 Debug.WriteLine("OperacionesLectura - Error : " + e.Message);
             }
 
-            // Devolvemos la lista de empleados obtenida
             return lista;
         }
     }
